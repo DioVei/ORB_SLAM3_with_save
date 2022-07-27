@@ -247,3 +247,6 @@ I tested the modified ORB_SLAM3 with a EuRoC sequence (V1_01_easy) in Stereo mod
 and the save pcd file is shown below by pcl_viewer
 
 ![Image text](https://github.com/DioVei/ORB_SLAM3_with_save/blob/master/result.png)
+
+# Update
+When you run the program in a large scene, you can rename MapDrawer.cc to MapDrawer_SmallScene.cc, and MapDrawer_BigScene.cc to MapDrawer.cc in the src folder. Then, you can rebuild the program to make the saving function adapt to large scenes.

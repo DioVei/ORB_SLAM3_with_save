@@ -174,7 +174,8 @@ void MapDrawer::DrawMapPoints(int id_to_map)
     }
     if (id_to_map != pre_id && cloud_saved->points.size() > 0)
     {
-        pcl::io::savePCDFileBinary(std::to_string(id_to_map) + ".pcd", *cloud_saved);
+        //pcl::io::savePCDFileBinary(std::to_string(id_to_map) + ".pcd", *cloud_saved);
+        pcl::io::savePCDFileBinary("map.pcd", *cloud_saved);
         pre_id = id_to_map;
         pre_num = cloud_saved->points.size();
     }
@@ -182,7 +183,8 @@ void MapDrawer::DrawMapPoints(int id_to_map)
     {
         if (cloud_saved->points.size() > pre_num)
         {
-            pcl::io::savePCDFileBinary(std::to_string(id_to_map) + ".pcd", *cloud_saved);
+            //pcl::io::savePCDFileBinary(std::to_string(id_to_map) + ".pcd", *cloud_saved);
+            pcl::io::savePCDFileBinary("map.pcd", *cloud_saved);
             pre_num = cloud_saved->points.size();
         }
     }

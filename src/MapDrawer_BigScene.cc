@@ -26,7 +26,7 @@
 #include <pcl/io/pcd_io.h>
 
 //extern int pcd_frame = 0;
-extern int pre_id = 0;
+//extern int pre_id = 0;
 extern int pre_num = 0;
 
 namespace ORB_SLAM3
@@ -139,7 +139,7 @@ bool MapDrawer::ParseViewerParamFile(cv::FileStorage &fSettings)
     return !b_miss_params;
 }
 
-void MapDrawer::DrawMapPoints(int id_to_map)
+void MapDrawer::DrawMapPoints()
 {
     Map* pActiveMap = mpAtlas->GetCurrentMap();
     if(!pActiveMap)
@@ -172,21 +172,11 @@ void MapDrawer::DrawMapPoints(int id_to_map)
         p.z = pos(2);
         cloud_saved->points.push_back(p);
     }
-    if (id_to_map != pre_id && cloud_saved->points.size() > 0)
+    if (cloud_saved->points.size() > pre_num)
     {
         //pcl::io::savePCDFileBinary(std::to_string(id_to_map) + ".pcd", *cloud_saved);
         pcl::io::savePCDFileBinary("map.pcd", *cloud_saved);
-        pre_id = id_to_map;
         pre_num = cloud_saved->points.size();
-    }
-    else
-    {
-        if (cloud_saved->points.size() > pre_num)
-        {
-            //pcl::io::savePCDFileBinary(std::to_string(id_to_map) + ".pcd", *cloud_saved);
-            pcl::io::savePCDFileBinary("map.pcd", *cloud_saved);
-            pre_num = cloud_saved->points.size();
-        }
     }
     //pcd_frame++;
     glEnd();
